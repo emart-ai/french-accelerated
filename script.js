@@ -59,7 +59,6 @@ function speak(text, button) {
 // Create letter buttons
 function createLettersGrid() {
     const grid = document.getElementById('letters-grid');
-    grid.innerHTML = '';
     
     letters.forEach(letter => {
         const button = document.createElement('button');
@@ -73,7 +72,6 @@ function createLettersGrid() {
 // Create number buttons
 function createNumbersGrid() {
     const grid = document.getElementById('numbers-grid');
-    grid.innerHTML = '';
     
     numbers.forEach(num => {
         const button = document.createElement('button');
@@ -115,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!('speechSynthesis' in window)) {
         const container = document.querySelector('.container');
         const errorMessage = document.createElement('div');
-        errorMessage.style.cssText = 'background: #f44336; color: white; padding: 15px; border-radius: 10px; margin-top: 20px; text-align: center;';
+        errorMessage.className = 'error-message';
         errorMessage.textContent = 'Sorry, your browser does not support text-to-speech. Please try a modern browser like Chrome, Firefox, or Safari.';
         container.appendChild(errorMessage);
     }
