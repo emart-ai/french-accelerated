@@ -1,72 +1,77 @@
-# French Learning App - Letters & Numbers
+# Aprender Francés - Letras y Números
 
-A simple, interactive web application to help Spanish speakers learn French letters and numbers.
+Una aplicación web simple e interactiva para ayudar a hispanohablantes a aprender el alfabeto y los números en francés con pronunciación de audio.
 
-## Features
+## Características
 
-- **Two Interactive Tabs:**
-  - 📝 **Letters Tab**: Learn the French alphabet with pronunciation guides (in Spanish)
-  - 🔢 **Numbers Tab**: Learn French numbers from 0 to 20 with pronunciation (in Spanish)
+- **Dos Pestañas Interactivas:**
+  - 📝 **Letras**: Alfabeto francés completo (A-Z)
+  - 🔢 **Números**: Números del 0 al 20 en francés
+  
+- **Pronunciación con Audio**: Toca o haz clic en cualquier letra o número para escuchar su pronunciación en francés usando la API de síntesis de voz del navegador (Web Speech API)
 
-- **Beautiful Design**: Modern, responsive interface with gradient backgrounds and smooth animations
-- **Easy to Use**: Click between tabs to switch between letters and numbers
-- **Educational Content**: Includes pronunciation guides and helpful tips in Spanish
-- **Base Language**: Spanish interface for Spanish speakers learning French
+- **Retroalimentación Visual**: Los botones se animan al reproducir el audio para dar una retroalimentación clara
 
-## How to Use
+- **Interfaz en Español**: Diseñado específicamente para hispanohablantes que aprenden francés
 
-### Option 1: Open Locally
-1. Download or clone this repository
-2. Open `index.html` in any modern web browser (Chrome, Firefox, Safari, Edge)
-3. Click on the tabs to switch between Letters and Numbers
+- **Diseño Responsivo**: Funciona en computadoras de escritorio, tabletas y dispositivos móviles
 
-### Option 2: Deploy Online
-You can deploy this to any static hosting service:
-- **GitHub Pages**: Enable GitHub Pages in your repository settings
-- **Netlify**: Drag and drop the HTML file
-- **Vercel**: Connect your repository
-- **Any web server**: Upload the `index.html` file
+- **Diseño Moderno**: Interfaz hermosa con gradientes, animaciones suaves y diseño moderno
 
-## What You'll Learn
+## Cómo Usar
 
-### Letters (L'Alphabet)
-- All 26 letters of the French alphabet
-- How to pronounce each letter
-- Special pronunciation tips for French sounds
+### Opción 1: Abrir Localmente
+1. Descarga o clona este repositorio
+2. Abre `index.html` en cualquier navegador web moderno (Chrome, Firefox, Safari, Edge)
+3. Haz clic en las pestañas "Letras" o "Números" para cambiar entre ellas
+4. Toca o haz clic en cualquier letra o número para escuchar su pronunciación en francés
 
-### Numbers (Les Nombres)
-- Numbers from 0 to 20 in French
-- Proper pronunciation for each number
-- Pattern recognition for building larger numbers
+### Opción 2: Desplegar en Línea
+Puedes desplegar esto en cualquier servicio de hosting estático:
+- **GitHub Pages**: Habilita GitHub Pages en la configuración de tu repositorio
+- **Netlify**: Arrastra y suelta los archivos
+- **Vercel**: Conecta tu repositorio
+- **Cualquier servidor web**: Sube los archivos HTML, CSS y JavaScript
 
-## Technical Details
+## Tecnología
 
-- **Pure HTML/CSS/JavaScript**: No dependencies or build process required
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Modern Styling**: Uses CSS Grid and Flexbox for layout
-- **Smooth Animations**: Tab transitions with fade-in effects
+- HTML5
+- CSS3 (con animaciones y gradientes)
+- JavaScript (ES6+)
+- Web Speech API para funcionalidad de texto a voz
 
-## Browser Compatibility
+## Compatibilidad de Navegadores
 
-Works in all modern browsers:
-- Chrome 60+
-- Firefox 60+
-- Safari 12+
-- Edge 79+
+Esta aplicación requiere un navegador que soporte la Web Speech API:
+- Chrome 33+
+- Firefox 49+
+- Safari 14.1+
+- Edge 14+
 
-## Future Enhancements
+## Lo Que Aprenderás
 
-Potential features to add:
-- Audio pronunciation for each letter and number
-- Interactive quizzes to test your knowledge
-- More number ranges (21-100, hundreds, thousands)
-- French words and common phrases
-- Progress tracking
+### Letras (L'Alphabet)
+- Las 26 letras del alfabeto francés
+- Cómo pronunciar cada letra en francés
+- Pronunciación con audio nativo del navegador
 
-## License
+### Números (Les Nombres)
+- Números del 0 al 20 en francés
+- Pronunciación correcta para cada número
+- Reconocimiento de patrones para construir números más grandes
 
-This project is open source and available for educational purposes.
+## Mejoras Futuras
+
+Características potenciales para agregar:
+- Cuestionarios interactivos para probar tu conocimiento
+- Más rangos de números (21-100, centenas, miles)
+- Palabras y frases comunes en francés
+- Seguimiento de progreso
+
+## Licencia
+
+Este es un proyecto educativo de código abierto.
 
 ---
 
-**Bonne chance! (Good luck!)** 🇫🇷
+**¡Bonne chance! (¡Buena suerte!)** 🇫🇷
