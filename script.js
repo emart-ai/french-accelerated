@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.querySelector('.container');
         const errorMessage = document.createElement('div');
         errorMessage.className = 'error-message';
-        errorMessage.textContent = 'Sorry, your browser does not support text-to-speech. Please try a modern browser like Chrome, Firefox, or Safari.';
+        errorMessage.textContent = 'Lo sentimos, tu navegador no soporta text-to-speech. Por favor intenta con un navegador moderno como Chrome, Firefox o Safari.';
         container.appendChild(errorMessage);
     }
 });
