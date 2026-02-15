@@ -27,31 +27,33 @@ const numbers = [
 ];
 
 // Initialize speech synthesis
-let synth = window.speechSynthesis;
-let currentUtterance = null;
+const speechSynthesis = window.speechSynthesis;
+
+// Constants
+const SPEECH_RATE = 0.8; // Slightly slower for learning
 
 // Function to speak text in French
 function speak(text, button) {
     // Cancel any ongoing speech
-    if (synth.speaking) {
-        synth.cancel();
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
     }
     
     // Create a new speech utterance
-    currentUtterance = new SpeechSynthesisUtterance(text);
-    currentUtterance.lang = 'fr-FR';
-    currentUtterance.rate = 0.8; // Slightly slower for learning
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'fr-FR';
+    utterance.rate = SPEECH_RATE;
     
     // Add visual feedback
     button.classList.add('speaking');
     
     // Remove visual feedback when done
-    currentUtterance.onend = () => {
+    utterance.onend = () => {
         button.classList.remove('speaking');
     };
     
     // Speak the text
-    synth.speak(currentUtterance);
+    speechSynthesis.speak(utterance);
 }
 
 // Create letter buttons
@@ -111,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if speech synthesis is supported
     if (!('speechSynthesis' in window)) {
-        alert('Sorry, your browser does not support text-to-speech. Please try a modern browser like Chrome, Firefox, or Safari.');
+        const container = document.querySelector('.container');
+        const errorMessage = document.createElement('div');
+        errorMessage.style.cssText = 'background: #f44336; color: white; padding: 15px; border-radius: 10px; margin-top: 20px; text-align: center;';
+        errorMessage.textContent = 'Sorry, your browser does not support text-to-speech. Please try a modern browser like Chrome, Firefox, or Safari.';
+        container.appendChild(errorMessage);
     }
 });
