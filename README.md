@@ -1,16 +1,17 @@
 # French Learning App - Letters & Numbers
 
-A simple, interactive web application to help you learn French letters and numbers.
+A simple, interactive web application to help Spanish speakers learn French letters and numbers.
 
 ## Features
 
 - **Two Interactive Tabs:**
-  - 📝 **Letters Tab**: Learn the French alphabet with pronunciation guides
-  - 🔢 **Numbers Tab**: Learn French numbers from 0 to 20 with pronunciation
+  - 📝 **Letters Tab**: Learn the French alphabet with pronunciation guides (in Spanish)
+  - 🔢 **Numbers Tab**: Learn French numbers from 0 to 20 with pronunciation (in Spanish)
 
 - **Beautiful Design**: Modern, responsive interface with gradient backgrounds and smooth animations
 - **Easy to Use**: Click between tabs to switch between letters and numbers
-- **Educational Content**: Includes pronunciation guides and helpful tips
+- **Educational Content**: Includes pronunciation guides and helpful tips in Spanish
+- **Base Language**: Spanish interface for Spanish speakers learning French
 
 ## How to Use
 
