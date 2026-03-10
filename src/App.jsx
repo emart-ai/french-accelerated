@@ -35,23 +35,24 @@ const NUMBERS = [
 
 const SPEECH_RATE = 0.8
 
-function speak(text, onStart, onEnd) {
+function speak(text, key, setSpeakingKey) {
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel()
   }
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = 'fr-FR'
   utterance.rate = SPEECH_RATE
-  utterance.onstart = onStart
-  utterance.onend = onEnd
+  utterance.onstart = () => setSpeakingKey(key)
+  utterance.onend = () => setSpeakingKey(null)
+  utterance.onerror = () => setSpeakingKey(null)
   window.speechSynthesis.speak(utterance)
 }
 
-function ItemButton({ label, text }) {
-  const [speaking, setSpeaking] = useState(false)
+function ItemButton({ label, text, speakingKey, setSpeakingKey }) {
+  const speaking = speakingKey === label
 
   function handleClick() {
-    speak(text, () => setSpeaking(true), () => setSpeaking(false))
+    speak(text, label, setSpeakingKey)
   }
 
   return (
@@ -66,6 +67,7 @@ function ItemButton({ label, text }) {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('letters')
+  const [speakingKey, setSpeakingKey] = useState(null)
   const speechSupported = 'speechSynthesis' in window
 
   return (
@@ -94,7 +96,7 @@ export default function App() {
             {LETTER_GROUPS.map((group, i) => (
               <div key={i} className="grid">
                 {group.map(letter => (
-                  <ItemButton key={letter} label={letter} text={letter} />
+                  <ItemButton key={letter} label={letter} text={letter} speakingKey={speakingKey} setSpeakingKey={setSpeakingKey} />
                 ))}
               </div>
             ))}
@@ -103,7 +105,7 @@ export default function App() {
         {activeTab === 'numbers' && (
           <div className="grid">
             {NUMBERS.map(num => (
-              <ItemButton key={num.value} label={num.value} text={num.french} />
+              <ItemButton key={num.value} label={num.value} text={num.french} speakingKey={speakingKey} setSpeakingKey={setSpeakingKey} />
             ))}
           </div>
         )}
