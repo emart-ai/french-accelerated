@@ -1,32 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aprender Francés - Letras y Números</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>🇫🇷 Apprendre le Français</h1>
-        <p class="subtitle">Toca cualquier letra o número para escuchar su pronunciación en francés</p>
-        
-        <div class="tabs">
-            <button class="tab-button active" data-tab="letters">📝 Letras</button>
-            <button class="tab-button" data-tab="numbers">🔢 Números</button>
-        </div>
-        
-        <div class="tab-content">
-            <div id="letters" class="tab-pane active">
-                <div class="grid" id="letters-grid"></div>
-            </div>
-            
-            <div id="numbers" class="tab-pane">
-                <div class="grid" id="numbers-grid"></div>
-            </div>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
