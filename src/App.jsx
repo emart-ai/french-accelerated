@@ -35,6 +35,25 @@ const NUMBERS = [
 
 const SPEECH_RATE = 0.8
 
+// Preferred French voices in order of quality
+const PREFERRED_VOICES = [
+  'Google français',
+  'Amélie',
+  'Thomas',
+  'Virginie',
+  'Audrey',
+]
+
+function getBestFrenchVoice() {
+  const voices = window.speechSynthesis.getVoices()
+  const frenchVoices = voices.filter(v => v.lang.startsWith('fr'))
+  for (const name of PREFERRED_VOICES) {
+    const match = frenchVoices.find(v => v.name === name)
+    if (match) return match
+  }
+  return frenchVoices[0] ?? null
+}
+
 function speak(text, key, setSpeakingKey) {
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel()
@@ -42,6 +61,7 @@ function speak(text, key, setSpeakingKey) {
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = 'fr-FR'
   utterance.rate = SPEECH_RATE
+  utterance.voice = getBestFrenchVoice()
   utterance.onstart = () => setSpeakingKey(key)
   utterance.onend = () => setSpeakingKey(null)
   utterance.onerror = () => setSpeakingKey(null)
