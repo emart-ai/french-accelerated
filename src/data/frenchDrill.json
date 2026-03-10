@@ -176,7 +176,7 @@
       { "fr": "dehors",     "es": "afuera",        "emoji": "🚪" }, { "fr": "vite",      "es": "rápido",      "emoji": "⚡" }
     ],
     "faire": [
-      { "fr": "du sport",    "es": "deporte",    "emoji": "⚽" }, { "fr": "la cuisine",  "es": "cocinar",  "emoji": "👨‍🍳" },
+      { "fr": "du sport",    "es": "deporte",    "emoji": "⚽" }, { "fr": "la cuisine",  "es": "la cocina", "emoji": "👨‍🍳" },
       { "fr": "du vélo",     "es": "ciclismo",   "emoji": "🚴" }, { "fr": "du yoga",     "es": "yoga",     "emoji": "🧘" },
       { "fr": "les courses", "es": "las compras", "emoji": "🛒" }, { "fr": "du bruit",   "es": "ruido",    "emoji": "🔊" },
       { "fr": "un voyage",   "es": "un viaje",   "emoji": "✈️" }, { "fr": "du café",    "es": "café",     "emoji": "☕" },
