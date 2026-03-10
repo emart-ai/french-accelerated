@@ -180,7 +180,7 @@
       { "fr": "du vélo",     "es": "ciclismo",   "emoji": "🚴" }, { "fr": "du yoga",     "es": "yoga",     "emoji": "🧘" },
       { "fr": "les courses", "es": "las compras", "emoji": "🛒" }, { "fr": "du bruit",   "es": "ruido",    "emoji": "🔊" },
       { "fr": "un voyage",   "es": "un viaje",   "emoji": "✈️" }, { "fr": "du café",    "es": "café",     "emoji": "☕" },
-      { "fr": "du bien",     "es": "bien",       "emoji": "💚" }, { "fr": "attention",  "es": "atención", "emoji": "⚠️" }
+      { "fr": "du bien",     "es": "bien",       "emoji": "💚" }, { "fr": "attention",  "es": "caso",     "emoji": "⚠️" }
     ],
     "pouvoir": [
       { "fr": "venir",       "es": "venir",      "emoji": "🚶" }, { "fr": "parler",      "es": "hablar",   "emoji": "🗣️" },
