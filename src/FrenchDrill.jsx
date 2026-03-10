@@ -808,21 +808,21 @@ export default function FrenchDrill({ onTabChange }){
   const daysInWeek=MONTH.filter(d=>d.week===activeWeek+1);
 
   return(
-    <div style={{position:"fixed",inset:0,overflowY:"auto",background:"#0a0a14",fontFamily:"'Georgia',serif",padding:"12px 10px 60px",boxSizing:"border-box"}}>
+    <div style={{position:"fixed",inset:0,overflowY:"auto",background:"linear-gradient(135deg,#667eea 0%,#764ba2 100%)",fontFamily:"-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif",padding:"20px 24px 60px",boxSizing:"border-box"}}>
       <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:12}}>
         {[["📝 Letras","letters"],["🔢 Números","numbers"],["🧑 Verbos","verbos"]].map(([label,key])=>(
-          <button key={key} onClick={()=>onTabChange&&onTabChange(key)} style={{padding:"5px 14px",borderRadius:20,border:`1.5px solid ${key==="verbos"?"#fff":"#2a2a3e"}`,background:key==="verbos"?"#fff":"transparent",color:key==="verbos"?"#0a0a14":"#555",fontSize:10,fontWeight:700,cursor:"pointer"}}>{label}</button>
+          <button key={key} onClick={()=>onTabChange&&onTabChange(key)} style={{padding:"8px 20px",borderRadius:20,border:`2px solid ${key==="verbos"?"#667eea":"#d0d0ea"}`,background:key==="verbos"?"#667eea":"transparent",color:key==="verbos"?"#fff":"#888",fontSize:17,fontWeight:700,cursor:"pointer"}}>{label}</button>
         ))}
       </div>
       <div style={{textAlign:"center",marginBottom:10}}>
-        <div style={{fontSize:9,letterSpacing:4,color:"#444",textTransform:"uppercase",marginBottom:2}}>🇫🇷 → 🇪🇸 · Plan de 1 Mes</div>
-        <h1 style={{margin:0,fontSize:19,fontWeight:800,color:"#fff",letterSpacing:-0.5}}>French Drill</h1>
-        <div style={{fontSize:9,color:"#555",marginTop:1}}>Día {day.day}/35 · Semana {day.week}/5</div>
+        <div style={{fontSize:15,letterSpacing:4,color:"#999",textTransform:"uppercase",marginBottom:2}}>🇫🇷 → 🇪🇸 · Plan de 1 Mes</div>
+        <h1 style={{margin:0,fontSize:32,fontWeight:800,color:"#222",letterSpacing:-0.5}}>French Drill</h1>
+        <div style={{fontSize:15,color:"#888",marginTop:1}}>Día {day.day}/35 · Semana {day.week}/5</div>
       </div>
 
       <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:12}}>
         {["🃏 Cards","📊 Tabla"].map((t,i)=>(
-          <button key={i} onClick={()=>{stopPlayback();setMainTab(i);}} style={{padding:"5px 16px",borderRadius:20,border:`1.5px solid ${mainTab===i?"#fff":"#2a2a3e"}`,background:mainTab===i?"#fff":"transparent",color:mainTab===i?"#0a0a14":"#555",fontSize:10,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{t}</button>
+          <button key={i} onClick={()=>{stopPlayback();setMainTab(i);}} style={{padding:"8px 20px",borderRadius:20,border:`2px solid ${mainTab===i?"#667eea":"#d0d0ea"}`,background:mainTab===i?"#667eea":"transparent",color:mainTab===i?"#fff":"#888",fontSize:17,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{t}</button>
         ))}
       </div>
 
@@ -830,14 +830,14 @@ export default function FrenchDrill({ onTabChange }){
         <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8,maxWidth:"100%"}}>
           {SUBJECTS.map((s,idx)=>{
             const on=activeCard===idx,spk=manualSpk===idx;
-            return(<div key={idx} onClick={()=>{setActiveCard(idx);setManualSpk(idx);speakPromise(s.french,"fr-FR").then(()=>setManualSpk(null));}} style={{background:on?`linear-gradient(135deg,${s.color}22,${s.color}08)`:"#1a1a2e",border:`1.5px solid ${on?s.color:"#2a2a3e"}`,borderRadius:12,padding:"9px 10px",cursor:"pointer",position:"relative",overflow:"hidden",transition:"all 0.2s",transform:on?"scale(0.97)":"scale(1)",userSelect:"none",WebkitTapHighlightColor:"transparent"}}>
+            return(<div key={idx} onClick={()=>{setActiveCard(idx);setManualSpk(idx);speakPromise(s.french,"fr-FR").then(()=>setManualSpk(null));}} style={{background:on?`linear-gradient(135deg,${s.color}22,${s.color}08)`:"#1a1a2e",border:`1.5px solid ${on?s.color:"#d0d0ea"}`,borderRadius:12,padding:"9px 10px",cursor:"pointer",position:"relative",overflow:"hidden",transition:"all 0.2s",transform:on?"scale(0.97)":"scale(1)",userSelect:"none",WebkitTapHighlightColor:"transparent"}}>
               {spk&&<div style={{position:"absolute",inset:0,borderRadius:12,background:`radial-gradient(circle,${s.color}33,transparent 70%)`,animation:"pulse 0.8s ease-in-out infinite alternate",pointerEvents:"none"}}/>}
               <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:s.color,borderRadius:"12px 12px 0 0",opacity:on?1:0.3}}/>
-              <div style={{fontSize:17,marginBottom:2}}>{s.emoji}</div>
-              <div style={{fontSize:9,color:s.color,opacity:0.8,fontStyle:"italic",marginBottom:2}}>/{s.phonetic}/</div>
-              <div style={{fontSize:20,fontWeight:800,color:on?s.color:"#fff",lineHeight:1,marginBottom:2,letterSpacing:-0.5}}>{s.french}</div>
-              <div style={{fontSize:11,color:"#f9a825",fontWeight:600}}>🇪🇸 {s.spanish}</div>
-              <div style={{position:"absolute",bottom:6,right:8,fontSize:11,opacity:spk?1:0.2,animation:spk?"bounce 0.5s infinite alternate":"none"}}>🔊</div>
+              <div style={{fontSize:28,marginBottom:2}}>{s.emoji}</div>
+              <div style={{fontSize:15,color:s.color,opacity:0.8,fontStyle:"italic",marginBottom:2}}>/{s.phonetic}/</div>
+              <div style={{fontSize:34,fontWeight:800,color:on?s.color:"#222",lineHeight:1,marginBottom:2,letterSpacing:-0.5}}>{s.french}</div>
+              <div style={{fontSize:18,color:"#9a6e00",fontWeight:600}}>🇪🇸 {s.spanish}</div>
+              <div style={{position:"absolute",bottom:6,right:8,fontSize:18,opacity:spk?1:0.2,animation:spk?"bounce 0.5s infinite alternate":"none"}}>🔊</div>
             </div>);
           })}
         </div>
@@ -846,58 +846,58 @@ export default function FrenchDrill({ onTabChange }){
       {mainTab===1&&(
         <div style={{maxWidth:"100%"}}>
           {/* Autoplay */}
-          <div style={{background:"#13132a",border:`2px solid ${isPlaying?day.color:"#2a2a3e"}`,borderRadius:14,padding:"9px 12px",marginBottom:10,display:"flex",alignItems:"center",gap:10,boxShadow:isPlaying?`0 0 18px ${day.color}44`:"none",transition:"all 0.3s"}}>
+          <div style={{background:"#ebebff",border:`2px solid ${isPlaying?day.color:"#d0d0ea"}`,borderRadius:14,padding:"9px 12px",marginBottom:10,display:"flex",alignItems:"center",gap:10,boxShadow:isPlaying?`0 0 18px ${day.color}44`:"none",transition:"all 0.3s"}}>
             <div style={{display:"flex",gap:5,flexShrink:0}}>
               {!isPlaying?(
-                <button onClick={startAutoplay} style={{width:42,height:42,borderRadius:"50%",background:`linear-gradient(135deg,${day.color},${day.color}99)`,border:"none",fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`0 4px 14px ${day.color}66`}}>▶️</button>
+                <button onClick={startAutoplay} style={{width:42,height:42,borderRadius:"50%",background:`linear-gradient(135deg,${day.color},${day.color}99)`,border:"none",fontSize:30,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`0 4px 14px ${day.color}66`}}>▶️</button>
               ):(
-                <><button onClick={togglePause} style={{width:36,height:36,borderRadius:"50%",background:isPaused?"#FECA57":"#FF9F43",border:"none",fontSize:14,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isPaused?"▶":"⏸"}</button>
-                <button onClick={stopPlayback} style={{width:36,height:36,borderRadius:"50%",background:"#FF6B6B",border:"none",fontSize:14,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>⏹</button></>
+                <><button onClick={togglePause} style={{width:36,height:36,borderRadius:"50%",background:isPaused?"#FECA57":"#FF9F43",border:"none",fontSize:23,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{isPaused?"▶":"⏸"}</button>
+                <button onClick={stopPlayback} style={{width:36,height:36,borderRadius:"50%",background:"#FF6B6B",border:"none",fontSize:23,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>⏹</button></>
               )}
             </div>
             <div style={{flex:1,minWidth:0}}>
               {!isPlaying?(
-                <div><div style={{fontSize:11,fontWeight:700,color:"#fff",marginBottom:1}}>▶ Autoplay</div><div style={{fontSize:9,color:"#555"}}>🇫🇷 → 🇪🇸 → 🇫🇷 por cada sujeto</div></div>
+                <div><div style={{fontSize:18,fontWeight:700,color:"#222",marginBottom:1}}>▶ Autoplay</div><div style={{fontSize:15,color:"#888"}}>🇫🇷 → 🇪🇸 → 🇫🇷 por cada sujeto</div></div>
               ):(
                 <div>
-                  <div style={{fontSize:10,fontWeight:700,color:day.color,marginBottom:1}}>{isPaused?"⏸ Pausado":playPhase}</div>
-                  {playRow!==null&&<div style={{fontSize:11,color:"#fff",fontWeight:600}}><span style={{color:SUBJECTS[playRow].color}}>{SUBJECTS[playRow].emoji} {SUBJECTS[playRow].french}</span><span style={{color:"#555",fontSize:9,marginLeft:5}}>{SUBJECTS[playRow].spanish}</span></div>}
-                  <div style={{display:"flex",gap:3,marginTop:3}}>{SUBJECTS.map((_,i)=><div key={i} style={{width:5,height:5,borderRadius:"50%",background:i<(playRow??0)?day.color:i===playRow?"#fff":"#2a2a3e",transition:"background 0.3s"}}/>)}</div>
+                  <div style={{fontSize:17,fontWeight:700,color:day.color,marginBottom:1}}>{isPaused?"⏸ Pausado":playPhase}</div>
+                  {playRow!==null&&<div style={{fontSize:18,color:"#222",fontWeight:600}}><span style={{color:SUBJECTS[playRow].color}}>{SUBJECTS[playRow].emoji} {SUBJECTS[playRow].french}</span><span style={{color:"#888",fontSize:15,marginLeft:5}}>{SUBJECTS[playRow].spanish}</span></div>}
+                  <div style={{display:"flex",gap:3,marginTop:3}}>{SUBJECTS.map((_,i)=><div key={i} style={{width:5,height:5,borderRadius:"50%",background:i<(playRow??0)?day.color:i===playRow?"#fff":"#d0d0ea",transition:"background 0.3s"}}/>)}</div>
                 </div>
               )}
             </div>
-            {isPlaying&&playRow!==null&&<div style={{fontSize:9,color:"#555",flexShrink:0}}><span style={{fontSize:15,fontWeight:800,color:day.color}}>{playRow+1}</span><span style={{color:"#333"}}>/9</span></div>}
+            {isPlaying&&playRow!==null&&<div style={{fontSize:15,color:"#888",flexShrink:0}}><span style={{fontSize:25,fontWeight:800,color:day.color}}>{playRow+1}</span><span style={{color:"#333"}}>/9</span></div>}
           </div>
 
           {/* Week tabs */}
           <div style={{display:"flex",gap:4,justifyContent:"center",marginBottom:6}}>
             {[0,1,2,3,4].map(w=>(
-              <button key={w} onClick={()=>setActiveWeek(w)} style={{padding:"4px 10px",borderRadius:20,border:`1.5px solid ${activeWeek===w?"#fff":"#2a2a3e"}`,background:activeWeek===w?"#fff":"transparent",color:activeWeek===w?"#0a0a14":"#555",fontSize:9,fontWeight:700,cursor:"pointer"}}>S{w+1}</button>
+              <button key={w} onClick={()=>setActiveWeek(w)} style={{padding:"4px 10px",borderRadius:20,border:`1.5px solid ${activeWeek===w?"#fff":"#d0d0ea"}`,background:activeWeek===w?"#fff":"transparent",color:activeWeek===w?"#0a0a14":"#555",fontSize:15,fontWeight:700,cursor:"pointer"}}>S{w+1}</button>
             ))}
           </div>
 
           {/* Day pills */}
           <div style={{display:"flex",gap:4,justifyContent:"center",flexWrap:"wrap",marginBottom:8}}>
             {daysInWeek.map(d=>(
-              <button key={d.day} onClick={()=>{setActiveDayIdx(d.day-1);setActiveSlot(0);}} style={{padding:"4px 8px",borderRadius:20,border:`1.5px solid ${activeDayIdx===d.day-1?d.color:"#2a2a3e"}`,background:activeDayIdx===d.day-1?`${d.color}22`:"transparent",color:activeDayIdx===d.day-1?d.color:"#555",fontSize:8,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{d.emoji} {d.shortLabel}</button>
+              <button key={d.day} onClick={()=>{setActiveDayIdx(d.day-1);setActiveSlot(0);}} style={{padding:"4px 8px",borderRadius:20,border:`1.5px solid ${activeDayIdx===d.day-1?d.color:"#d0d0ea"}`,background:activeDayIdx===d.day-1?`${d.color}22`:"transparent",color:activeDayIdx===d.day-1?d.color:"#888",fontSize:13,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{d.emoji} {d.shortLabel}</button>
             ))}
           </div>
 
           {/* Day info */}
-          <div style={{background:"#1a1a2e",border:`1px solid ${day.color}44`,borderRadius:10,padding:"6px 12px",marginBottom:8}}>
+          <div style={{background:"#f4f4ff",border:`1px solid ${day.color}44`,borderRadius:10,padding:"6px 12px",marginBottom:8}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:1}}>
-              <span style={{fontSize:11,fontWeight:800,color:day.color}}>Día {day.day} · {day.label}</span>
-              <span style={{fontSize:8,color:"#555"}}>🇪🇸 {day.themeEs}</span>
+              <span style={{fontSize:18,fontWeight:800,color:day.color}}>Día {day.day} · {day.label}</span>
+              <span style={{fontSize:13,color:"#888"}}>🇪🇸 {day.themeEs}</span>
             </div>
-            <div style={{fontSize:9,color:"#666",fontStyle:"italic"}}>💡 {day.tip}</div>
+            <div style={{fontSize:15,color:"#666",fontStyle:"italic"}}>💡 {day.tip}</div>
           </div>
 
           {/* Slot pills */}
           <div style={{marginBottom:8}}>
-            <div style={{fontSize:8,color:"#555",letterSpacing:1,textTransform:"uppercase",marginBottom:4,textAlign:"center"}}>Práctica {activeSlot+1} / {day.slots.length}</div>
+            <div style={{fontSize:13,color:"#888",letterSpacing:1,textTransform:"uppercase",marginBottom:4,textAlign:"center"}}>Práctica {activeSlot+1} / {day.slots.length}</div>
             <div style={{display:"flex",gap:3,flexWrap:"wrap",justifyContent:"center"}}>
               {day.slots.map((_,i)=>(
-                <button key={i} onClick={()=>setActiveSlot(i)} style={{width:21,height:21,borderRadius:"50%",border:`1.5px solid ${activeSlot===i?day.color:"#2a2a3e"}`,background:activeSlot===i?day.color:"#1a1a2e",color:activeSlot===i?"#0a0a14":"#555",fontSize:7,fontWeight:700,cursor:"pointer",transition:"all 0.12s"}}>{i+1}</button>
+                <button key={i} onClick={()=>setActiveSlot(i)} style={{width:21,height:21,borderRadius:"50%",border:`1.5px solid ${activeSlot===i?day.color:"#d0d0ea"}`,background:activeSlot===i?day.color:"#1a1a2e",color:activeSlot===i?"#0a0a14":"#555",fontSize:11,fontWeight:700,cursor:"pointer",transition:"all 0.12s"}}>{i+1}</button>
               ))}
             </div>
           </div>
@@ -905,24 +905,24 @@ export default function FrenchDrill({ onTabChange }){
           {/* Verb + pred */}
           <div style={{display:"grid",gridTemplateColumns:"1fr auto 1fr",gap:5,alignItems:"center",marginBottom:8}}>
             <div style={{background:`${day.color}18`,border:`1.5px solid ${day.color}55`,borderRadius:10,padding:"7px 8px",textAlign:"center"}}>
-              <div style={{fontSize:8,color:"#555",letterSpacing:1,textTransform:"uppercase",marginBottom:1}}>🔵 Verbe</div>
-              <div style={{fontSize:8,marginBottom:1}}>{slotVM.emoji}</div>
-              <div style={{fontSize:15,fontWeight:800,color:day.color,lineHeight:1}}>{slot.inf}</div>
-              <div style={{fontSize:8,color:"#f9a825",marginTop:1}}>🇪🇸 {slotVM.es}</div>
+              <div style={{fontSize:13,color:"#888",letterSpacing:1,textTransform:"uppercase",marginBottom:1}}>🔵 Verbe</div>
+              <div style={{fontSize:13,marginBottom:1}}>{slotVM.emoji}</div>
+              <div style={{fontSize:25,fontWeight:800,color:day.color,lineHeight:1}}>{slot.inf}</div>
+              <div style={{fontSize:13,color:"#9a6e00",marginTop:1}}>🇪🇸 {slotVM.es}</div>
             </div>
-            <div style={{fontSize:14,color:"#333",textAlign:"center"}}>+</div>
+            <div style={{fontSize:23,color:"#333",textAlign:"center"}}>+</div>
             <div style={{background:"#1DD1A122",border:"1.5px solid #1DD1A155",borderRadius:10,padding:"7px 8px",textAlign:"center"}}>
-              <div style={{fontSize:8,color:"#555",letterSpacing:1,textTransform:"uppercase",marginBottom:1}}>📝 Predicado</div>
-              <div style={{fontSize:8,marginBottom:1}}>{pred.emoji}</div>
-              <div style={{fontSize:15,fontWeight:800,color:"#1DD1A1",lineHeight:1}}>{pred.fr}</div>
-              <div style={{fontSize:8,color:"#f9a825",marginTop:1}}>🇪🇸 {pred.es}</div>
+              <div style={{fontSize:13,color:"#888",letterSpacing:1,textTransform:"uppercase",marginBottom:1}}>📝 Predicado</div>
+              <div style={{fontSize:13,marginBottom:1}}>{pred.emoji}</div>
+              <div style={{fontSize:25,fontWeight:800,color:"#1DD1A1",lineHeight:1}}>{pred.fr}</div>
+              <div style={{fontSize:13,color:"#9a6e00",marginTop:1}}>🇪🇸 {pred.es}</div>
             </div>
           </div>
 
           {/* Col headers */}
           <div style={{display:"grid",gridTemplateColumns:"20px 1fr 1fr 1fr",gap:4,marginBottom:3}}>
             {["","🧑 Sujeto","🔵 Verbo","📝 Predicado"].map((h,i)=>(
-              <div key={i} style={{fontSize:7,color:"#555",letterSpacing:1,textTransform:"uppercase",fontWeight:700,padding:"0 3px"}}>{h}</div>
+              <div key={i} style={{fontSize:11,color:"#888",letterSpacing:1,textTransform:"uppercase",fontWeight:700,padding:"0 3px"}}>{h}</div>
             ))}
           </div>
 
@@ -932,19 +932,19 @@ export default function FrenchDrill({ onTabChange }){
               const isActive=hl===idx,pFR=frForm(pred,idx),pES=esForm(pred,idx),isNow=isPlaying&&playRow===idx;
               return(
                 <div key={idx} onClick={()=>tapRow(idx)} style={{display:"grid",gridTemplateColumns:"20px 1fr 1fr 1fr",gap:3,alignItems:"stretch",cursor:isPlaying?"default":"pointer",userSelect:"none",WebkitTapHighlightColor:"transparent",opacity:isPlaying&&!isActive?0.4:1,transition:"opacity 0.3s"}}>
-                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:12}}>{isNow?<span style={{animation:"bounce 0.4s infinite alternate"}}>{s.emoji}</span>:s.emoji}</div>
-                  <div style={{background:isActive?`${s.color}28`:"#1a1a2e",border:`1.5px solid ${isActive?s.color:"#2a2a3e"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?`0 0 10px ${s.color}44`:"none"}}>
-                    <div style={{fontSize:13,fontWeight:800,color:s.color,lineHeight:1}}>{s.french}</div>
-                    <div style={{fontSize:7,color:"#f9a825",marginTop:1,fontWeight:600}}>🇪🇸 {s.spanish}</div>
+                  <div style={{display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>{isNow?<span style={{animation:"bounce 0.4s infinite alternate"}}>{s.emoji}</span>:s.emoji}</div>
+                  <div style={{background:isActive?`${s.color}28`:"#1a1a2e",border:`1.5px solid ${isActive?s.color:"#d0d0ea"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?`0 0 10px ${s.color}44`:"none"}}>
+                    <div style={{fontSize:22,fontWeight:800,color:s.color,lineHeight:1}}>{s.french}</div>
+                    <div style={{fontSize:11,color:"#9a6e00",marginTop:1,fontWeight:600}}>🇪🇸 {s.spanish}</div>
                   </div>
-                  <div style={{background:isActive?`${day.color}28`:"#1a1a2e",border:`1.5px solid ${isActive?day.color:"#2a2a3e"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?`0 0 10px ${day.color}44`:"none"}}>
-                    <div style={{fontSize:13,fontWeight:800,color:day.color,lineHeight:1}}>{slot.conj[idx]}</div>
-                    <div style={{fontSize:7,color:"#f9a825",marginTop:1,fontWeight:600}}>🇪🇸 {slot.conjEs[idx]}</div>
-                    {isNow&&<div style={{fontSize:7,marginTop:1}}>🔊</div>}
+                  <div style={{background:isActive?`${day.color}28`:"#1a1a2e",border:`1.5px solid ${isActive?day.color:"#d0d0ea"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?`0 0 10px ${day.color}44`:"none"}}>
+                    <div style={{fontSize:22,fontWeight:800,color:day.color,lineHeight:1}}>{slot.conj[idx]}</div>
+                    <div style={{fontSize:11,color:"#9a6e00",marginTop:1,fontWeight:600}}>🇪🇸 {slot.conjEs[idx]}</div>
+                    {isNow&&<div style={{fontSize:11,marginTop:1}}>🔊</div>}
                   </div>
-                  <div style={{background:isActive?"#1DD1A128":"#1a1a2e",border:`1.5px solid ${isActive?"#1DD1A1":"#2a2a3e"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?"0 0 10px #1DD1A144":"none"}}>
-                    <div style={{fontSize:12,fontWeight:800,color:"#1DD1A1",lineHeight:1}}>{pFR}</div>
-                    <div style={{fontSize:7,color:"#f9a825",marginTop:1,fontWeight:600}}>🇪🇸 {pES}</div>
+                  <div style={{background:isActive?"#1DD1A128":"#1a1a2e",border:`1.5px solid ${isActive?"#1DD1A1":"#d0d0ea"}`,borderRadius:6,padding:"5px 6px",transition:"all 0.2s",boxShadow:isActive?"0 0 10px #1DD1A144":"none"}}>
+                    <div style={{fontSize:20,fontWeight:800,color:"#1DD1A1",lineHeight:1}}>{pFR}</div>
+                    <div style={{fontSize:11,color:"#9a6e00",marginTop:1,fontWeight:600}}>🇪🇸 {pES}</div>
                   </div>
                 </div>
               );
@@ -952,22 +952,22 @@ export default function FrenchDrill({ onTabChange }){
           </div>
 
           {isPlaying&&(
-            <div style={{marginTop:10,textAlign:"center",padding:"7px 12px",background:"#13132a",borderRadius:10,border:"1px solid #2a2a3e"}}>
-              <div style={{fontSize:11,fontWeight:700,color:day.color,marginBottom:3}}>{playPhase}</div>
-              {playRow!==null&&<><div style={{fontSize:13,color:"#fff",fontWeight:700,marginBottom:2}}>🇫🇷 {buildFR(playRow)}</div><div style={{fontSize:12,color:"#f9a825"}}>🇪🇸 {buildES(playRow)}</div></>}
+            <div style={{marginTop:10,textAlign:"center",padding:"7px 12px",background:"#ebebff",borderRadius:10,border:"1px solid #2a2a3e"}}>
+              <div style={{fontSize:18,fontWeight:700,color:day.color,marginBottom:3}}>{playPhase}</div>
+              {playRow!==null&&<><div style={{fontSize:22,color:"#222",fontWeight:700,marginBottom:2}}>🇫🇷 {buildFR(playRow)}</div><div style={{fontSize:20,color:"#9a6e00"}}>🇪🇸 {buildES(playRow)}</div></>}
             </div>
           )}
 
-          <div style={{marginTop:8,background:"#1a1a2e",border:"1px solid #2a2a3e",borderRadius:10,padding:"7px 11px"}}>
-            <div style={{fontSize:7,color:"#555",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>📖 Oraciones completas</div>
+          <div style={{marginTop:8,background:"#f4f4ff",border:"1px solid #2a2a3e",borderRadius:10,padding:"7px 11px"}}>
+            <div style={{fontSize:11,color:"#888",letterSpacing:1,textTransform:"uppercase",marginBottom:4}}>📖 Oraciones completas</div>
             {SUBJECTS.map((s,idx)=>{
               const pFR=frForm(pred,idx),pES=esForm(pred,idx),isHl=hl===idx;
               return(
-                <div key={idx} onClick={()=>tapRow(idx)} style={{fontSize:10,marginBottom:3,lineHeight:1.5,cursor:isPlaying?"default":"pointer",display:"flex",gap:5,alignItems:"baseline",opacity:isPlaying&&!isHl?0.3:1,transition:"opacity 0.3s"}}>
+                <div key={idx} onClick={()=>tapRow(idx)} style={{fontSize:17,marginBottom:3,lineHeight:1.5,cursor:isPlaying?"default":"pointer",display:"flex",gap:5,alignItems:"baseline",opacity:isPlaying&&!isHl?0.3:1,transition:"opacity 0.3s"}}>
                   <span style={{color:s.color,fontWeight:700,minWidth:30}}>{s.french}</span>
                   <span style={{color:day.color,fontWeight:700}}>{slot.conj[idx]}</span>
                   <span style={{color:"#1DD1A1",fontWeight:700}}>{pFR}</span>
-                  <span style={{color:"#444",fontSize:7,marginLeft:2}}>🇪🇸 {s.spanish} {slot.conjEs[idx]} {pES}</span>
+                  <span style={{color:"#999",fontSize:11,marginLeft:2}}>🇪🇸 {s.spanish} {slot.conjEs[idx]} {pES}</span>
                 </div>
               );
             })}
@@ -975,7 +975,7 @@ export default function FrenchDrill({ onTabChange }){
         </div>
       )}
 
-      <div style={{textAlign:"center",marginTop:16,fontSize:9,color:"#2a2a3e"}}>{isPlaying?`🔊 ${playPhase}`:"toca para escuchar · ▶ para autoplay"}</div>
+      <div style={{textAlign:"center",marginTop:16,fontSize:15,color:"#d0d0ea"}}>{isPlaying?`🔊 ${playPhase}`:"toca para escuchar · ▶ para autoplay"}</div>
       <style>{`@keyframes pulse{from{opacity:.4}to{opacity:1}}@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-4px)}}`}</style>
     </div>
   );
