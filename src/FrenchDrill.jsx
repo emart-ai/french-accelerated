@@ -827,7 +827,7 @@ export default function FrenchDrill({ onTabChange }){
       </div>
 
       {mainTab===0&&(
-        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8,maxWidth:460,margin:"0 auto"}}>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:8,maxWidth:"100%"}}>
           {SUBJECTS.map((s,idx)=>{
             const on=activeCard===idx,spk=manualSpk===idx;
             return(<div key={idx} onClick={()=>{setActiveCard(idx);setManualSpk(idx);speakPromise(s.french,"fr-FR").then(()=>setManualSpk(null));}} style={{background:on?`linear-gradient(135deg,${s.color}22,${s.color}08)`:"#1a1a2e",border:`1.5px solid ${on?s.color:"#2a2a3e"}`,borderRadius:12,padding:"9px 10px",cursor:"pointer",position:"relative",overflow:"hidden",transition:"all 0.2s",transform:on?"scale(0.97)":"scale(1)",userSelect:"none",WebkitTapHighlightColor:"transparent"}}>
@@ -844,7 +844,7 @@ export default function FrenchDrill({ onTabChange }){
       )}
 
       {mainTab===1&&(
-        <div style={{maxWidth:460,margin:"0 auto"}}>
+        <div style={{maxWidth:"100%"}}>
           {/* Autoplay */}
           <div style={{background:"#13132a",border:`2px solid ${isPlaying?day.color:"#2a2a3e"}`,borderRadius:14,padding:"9px 12px",marginBottom:10,display:"flex",alignItems:"center",gap:10,boxShadow:isPlaying?`0 0 18px ${day.color}44`:"none",transition:"all 0.3s"}}>
             <div style={{display:"flex",gap:5,flexShrink:0}}>
