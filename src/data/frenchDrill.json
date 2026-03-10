@@ -4,7 +4,7 @@
     { "french": "Tu",    "spanish": "Tú",        "phonetic": "Too",  "color": "#FF9F43", "emoji": "👉" },
     { "french": "Il",    "spanish": "Él",        "phonetic": "Eel",  "color": "#54A0FF", "emoji": "👦" },
     { "french": "Elle",  "spanish": "Ella",      "phonetic": "El",   "color": "#FF6EB4", "emoji": "👧" },
-    { "french": "On",    "spanish": "Uno/Nos.",  "phonetic": "Ohn",  "color": "#A29BFE", "emoji": "🤝" },
+    { "french": "On",    "spanish": "Uno / Nosotros",  "phonetic": "Ohn",  "color": "#A29BFE", "emoji": "🤝" },
     { "french": "Nous",  "spanish": "Nosotros",  "phonetic": "Noo",  "color": "#00D2D3", "emoji": "👫" },
     { "french": "Vous",  "spanish": "Ud./Uds.",  "phonetic": "Voo",  "color": "#1DD1A1", "emoji": "🎩" },
     { "french": "Ils",   "spanish": "Ellos",     "phonetic": "Eel",  "color": "#F368E0", "emoji": "👬" },
