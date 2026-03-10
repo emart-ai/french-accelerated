@@ -1,0 +1,33 @@
+{
+  "letterGroups": [
+    ["A", "B", "C", "D", "E"],
+    ["F", "G", "H", "I", "J"],
+    ["K", "L", "M", "N", "O"],
+    ["P", "Q", "R", "S", "T"],
+    ["U", "V", "W"],
+    ["X", "Y", "Z"]
+  ],
+  "numbers": [
+    { "value": "0", "french": "zéro" },
+    { "value": "1", "french": "un" },
+    { "value": "2", "french": "deux" },
+    { "value": "3", "french": "trois" },
+    { "value": "4", "french": "quatre" },
+    { "value": "5", "french": "cinq" },
+    { "value": "6", "french": "six" },
+    { "value": "7", "french": "sept" },
+    { "value": "8", "french": "huit" },
+    { "value": "9", "french": "neuf" },
+    { "value": "10", "french": "dix" },
+    { "value": "11", "french": "onze" },
+    { "value": "12", "french": "douze" },
+    { "value": "13", "french": "treize" },
+    { "value": "14", "french": "quatorze" },
+    { "value": "15", "french": "quinze" },
+    { "value": "16", "french": "seize" },
+    { "value": "17", "french": "dix-sept" },
+    { "value": "18", "french": "dix-huit" },
+    { "value": "19", "french": "dix-neuf" },
+    { "value": "20", "french": "vingt" }
+  ]
+}
