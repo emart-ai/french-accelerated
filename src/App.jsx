@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
-const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+const LETTER_GROUPS = [
+  ['A', 'B', 'C', 'D', 'E'],
+  ['F', 'G', 'H', 'I', 'J'],
+  ['K', 'L', 'M', 'N', 'O'],
+  ['P', 'Q', 'R', 'S', 'T'],
+  ['U', 'V', 'W'],
+  ['X', 'Y', 'Z'],
+]
 
 const NUMBERS = [
   { value: '0', french: 'zéro' },
@@ -83,9 +90,13 @@ export default function App() {
 
       <div className="tab-content">
         {activeTab === 'letters' && (
-          <div className="grid">
-            {LETTERS.map(letter => (
-              <ItemButton key={letter} label={letter} text={letter} />
+          <div className="letter-groups">
+            {LETTER_GROUPS.map((group, i) => (
+              <div key={i} className="grid">
+                {group.map(letter => (
+                  <ItemButton key={letter} label={letter} text={letter} />
+                ))}
+              </div>
             ))}
           </div>
         )}
