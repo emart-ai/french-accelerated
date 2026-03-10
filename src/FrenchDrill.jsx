@@ -187,7 +187,7 @@ export default function FrenchDrill({ onTabChange }) {
   const [mainTab,       setMainTab]       = useState(0);
   const [activeCard,    setActiveCard]    = useState(null);
   const [manualSpk,     setManualSpk]     = useState(null);
-  const [activeDayIdx,  setActiveDayIdx]  = useState(0);
+  const [activeDayIdx,  setActiveDayIdx]  = useState(new Date().getDay());
   const [activeSlot,    setActiveSlot]    = useState(0);
   const [activeWeek,    setActiveWeek]    = useState(0);
   const [isPlaying,     setIsPlaying]     = useState(false);
