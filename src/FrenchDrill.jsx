@@ -808,7 +808,7 @@ export default function FrenchDrill({ onTabChange }){
   const daysInWeek=MONTH.filter(d=>d.week===activeWeek+1);
 
   return(
-    <div style={{minHeight:"100vh",background:"#0a0a14",fontFamily:"'Georgia',serif",padding:"12px 10px 60px",boxSizing:"border-box"}}>
+    <div style={{position:"fixed",inset:0,overflowY:"auto",background:"#0a0a14",fontFamily:"'Georgia',serif",padding:"12px 10px 60px",boxSizing:"border-box"}}>
       <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:12}}>
         {[["📝 Letras","letters"],["🔢 Números","numbers"],["🧑 Verbos","verbos"]].map(([label,key])=>(
           <button key={key} onClick={()=>onTabChange&&onTabChange(key)} style={{padding:"5px 14px",borderRadius:20,border:`1.5px solid ${key==="verbos"?"#fff":"#2a2a3e"}`,background:key==="verbos"?"#fff":"transparent",color:key==="verbos"?"#0a0a14":"#555",fontSize:10,fontWeight:700,cursor:"pointer"}}>{label}</button>
