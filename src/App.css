@@ -85,6 +85,10 @@ h1 {
   animation: fadeIn 0.3s ease;
 }
 
+.grid .item-button {
+  flex: 1;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
