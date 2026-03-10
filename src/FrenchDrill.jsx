@@ -298,7 +298,7 @@ export default function FrenchDrill({ onTabChange }) {
   return (
     <div style={{
       position: "fixed", inset: 0, overflowY: "auto",
-      background: "linear-gradient(135deg,#667eea 0%,#764ba2 100%)",
+      background: "#fff",
       fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif",
       padding: "20px 24px 60px", boxSizing: "border-box",
     }}>
@@ -310,9 +310,9 @@ export default function FrenchDrill({ onTabChange }) {
             onClick={() => onTabChange && onTabChange(key)}
             style={{
               padding: "8px 20px", borderRadius: 20,
-              border: `2px solid ${key === "verbos" ? "#667eea" : "#d0d0ea"}`,
+              border: `2px solid ${key === "verbos" ? "#667eea" : "#ccc"}`,
               background: key === "verbos" ? "#667eea" : "transparent",
-              color: key === "verbos" ? "#fff" : "#888",
+              color: key === "verbos" ? "#fff" : "#666",
               fontSize: 17, fontWeight: 700, cursor: "pointer",
             }}
           >
@@ -342,9 +342,9 @@ export default function FrenchDrill({ onTabChange }) {
             onClick={() => { stopPlayback(); setMainTab(i); }}
             style={{
               padding: "8px 20px", borderRadius: 20,
-              border: `2px solid ${mainTab === i ? "#667eea" : "#d0d0ea"}`,
+              border: `2px solid ${mainTab === i ? "#667eea" : "#ccc"}`,
               background: mainTab === i ? "#667eea" : "transparent",
-              color: mainTab === i ? "#fff" : "#888",
+              color: mainTab === i ? "#fff" : "#666",
               fontSize: 17, fontWeight: 700, cursor: "pointer", transition: "all 0.2s",
             }}
           >
@@ -535,9 +535,9 @@ export default function FrenchDrill({ onTabChange }) {
                 onClick={() => setActiveWeek(w)}
                 style={{
                   padding: "4px 10px", borderRadius: 20,
-                  border: `1.5px solid ${activeWeek === w ? "#fff" : "#d0d0ea"}`,
-                  background: activeWeek === w ? "#fff" : "transparent",
-                  color: activeWeek === w ? "#333" : "#ccc",
+                  border: `1.5px solid ${activeWeek === w ? "#667eea" : "#d0d0ea"}`,
+                  background: activeWeek === w ? "#667eea" : "transparent",
+                  color: activeWeek === w ? "#fff" : "#888",
                   fontSize: 15, fontWeight: 700, cursor: "pointer",
                 }}
               >
@@ -800,7 +800,7 @@ export default function FrenchDrill({ onTabChange }) {
       )}
 
       {/* ── Footer hint ── */}
-      <div style={{ textAlign: "center", marginTop: 16, fontSize: 15, color: "#d0d0ea" }}>
+      <div style={{ textAlign: "center", marginTop: 16, fontSize: 15, color: "#aaa" }}>
         {isPlaying ? `🔊 ${playPhase}` : "toca para escuchar · ▶ para autoplay"}
       </div>
 
