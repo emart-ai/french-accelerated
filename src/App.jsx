@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import FrenchDrill from './FrenchDrill.jsx'
 
 const LETTER_GROUPS = [
   ['A', 'B', 'C', 'D', 'E'],
@@ -90,6 +91,10 @@ export default function App() {
   const [speakingKey, setSpeakingKey] = useState(null)
   const speechSupported = 'speechSynthesis' in window
 
+  if (activeTab === 'verbos') {
+    return <FrenchDrill onTabChange={setActiveTab} />
+  }
+
   return (
     <div className="container">
       <h1>🇫🇷 Apprendre le Français</h1>
@@ -107,6 +112,12 @@ export default function App() {
           onClick={() => setActiveTab('numbers')}
         >
           🔢 Números
+        </button>
+        <button
+          className={`tab-button${activeTab === 'verbos' ? ' active' : ''}`}
+          onClick={() => setActiveTab('verbos')}
+        >
+          🧑 Verbos
         </button>
       </div>
 
