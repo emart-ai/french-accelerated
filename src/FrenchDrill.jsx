@@ -16,15 +16,15 @@ import {
 // Repeated style constants
 // ---------------------------------------------------------------------------
 
-// Dark card background used throughout the conjugation table rows
-const DARK_CELL_BG = "#1a1a2e";
+// Card background and border used throughout the conjugation table rows
+const DARK_CELL_BG = "#ffffff";
 const DARK_CELL_BORDER = "#d0d0ea";
 
 // Spanish translation label color (warm gold) used across the app
 const ES_LABEL_COLOR = "#9a6e00";
 
-// Predicate accent color
-const PRED_COLOR = "#1DD1A1";
+// Predicate accent color (dark teal for readability on white)
+const PRED_COLOR = "#0a9e7e";
 
 // ---------------------------------------------------------------------------
 // Predicate form helpers
@@ -537,7 +537,7 @@ export default function FrenchDrill({ onTabChange }) {
                   padding: "4px 10px", borderRadius: 20,
                   border: `1.5px solid ${activeWeek === w ? "#fff" : "#d0d0ea"}`,
                   background: activeWeek === w ? "#fff" : "transparent",
-                  color: activeWeek === w ? "#0a0a14" : "#555",
+                  color: activeWeek === w ? "#333" : "#ccc",
                   fontSize: 15, fontWeight: 700, cursor: "pointer",
                 }}
               >
@@ -597,7 +597,7 @@ export default function FrenchDrill({ onTabChange }) {
                     width: 21, height: 21, borderRadius: "50%",
                     border: `1.5px solid ${activeSlot === i ? day.color : DARK_CELL_BORDER}`,
                     background: activeSlot === i ? day.color : DARK_CELL_BG,
-                    color: activeSlot === i ? "#0a0a14" : "#555",
+                    color: activeSlot === i ? "#fff" : "#888",
                     fontSize: 11, fontWeight: 700, cursor: "pointer", transition: "all 0.12s",
                   }}
                 >
@@ -735,7 +735,7 @@ export default function FrenchDrill({ onTabChange }) {
           {isPlaying && (
             <div style={{
               marginTop: 10, textAlign: "center", padding: "7px 12px",
-              background: "#ebebff", borderRadius: 10, border: "1px solid #2a2a3e",
+              background: "#ebebff", borderRadius: 10, border: "1px solid #d0d0ea",
             }}>
               <div style={{ fontSize: 18, fontWeight: 700, color: day.color, marginBottom: 3 }}>
                 {playPhase}
@@ -756,7 +756,7 @@ export default function FrenchDrill({ onTabChange }) {
           {/* ── Full sentence list ── */}
           <div style={{
             marginTop: 8, background: "#f4f4ff",
-            border: "1px solid #2a2a3e", borderRadius: 10, padding: "7px 11px",
+            border: "1px solid #d0d0ea", borderRadius: 10, padding: "7px 11px",
           }}>
             <div style={{
               fontSize: 11, color: "#888", letterSpacing: 1,
