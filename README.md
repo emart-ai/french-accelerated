@@ -1,77 +1,36 @@
-# Aprender Francés - Letras y Números
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Una aplicación web simple e interactiva para ayudar a hispanohablantes a aprender el alfabeto y los números en francés con pronunciación de audio.
+## Getting Started
 
-## Características
+First, run the development server:
 
-- **Dos Pestañas Interactivas:**
-  - 📝 **Letras**: Alfabeto francés completo (A-Z)
-  - 🔢 **Números**: Números del 0 al 20 en francés
-  
-- **Pronunciación con Audio**: Toca o haz clic en cualquier letra o número para escuchar su pronunciación en francés usando la API de síntesis de voz del navegador (Web Speech API)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Retroalimentación Visual**: Los botones se animan al reproducir el audio para dar una retroalimentación clara
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Interfaz en Español**: Diseñado específicamente para hispanohablantes que aprenden francés
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **Diseño Responsivo**: Funciona en computadoras de escritorio, tabletas y dispositivos móviles
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **Diseño Moderno**: Interfaz hermosa con gradientes, animaciones suaves y diseño moderno
+## Learn More
 
-## Cómo Usar
+To learn more about Next.js, take a look at the following resources:
 
-### Opción 1: Abrir Localmente
-1. Descarga o clona este repositorio
-2. Abre `index.html` en cualquier navegador web moderno (Chrome, Firefox, Safari, Edge)
-3. Haz clic en las pestañas "Letras" o "Números" para cambiar entre ellas
-4. Toca o haz clic en cualquier letra o número para escuchar su pronunciación en francés
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Opción 2: Desplegar en Línea
-Puedes desplegar esto en cualquier servicio de hosting estático:
-- **GitHub Pages**: Habilita GitHub Pages en la configuración de tu repositorio
-- **Netlify**: Arrastra y suelta los archivos
-- **Vercel**: Conecta tu repositorio
-- **Cualquier servidor web**: Sube los archivos HTML, CSS y JavaScript
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Tecnología
+## Deploy on Vercel
 
-- HTML5
-- CSS3 (con animaciones y gradientes)
-- JavaScript (ES6+)
-- Web Speech API para funcionalidad de texto a voz
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Compatibilidad de Navegadores
-
-Esta aplicación requiere un navegador que soporte la Web Speech API:
-- Chrome 33+
-- Firefox 49+
-- Safari 14.1+
-- Edge 14+
-
-## Lo Que Aprenderás
-
-### Letras (L'Alphabet)
-- Las 26 letras del alfabeto francés
-- Cómo pronunciar cada letra en francés
-- Pronunciación con audio nativo del navegador
-
-### Números (Les Nombres)
-- Números del 0 al 20 en francés
-- Pronunciación correcta para cada número
-- Reconocimiento de patrones para construir números más grandes
-
-## Mejoras Futuras
-
-Características potenciales para agregar:
-- Cuestionarios interactivos para probar tu conocimiento
-- Más rangos de números (21-100, centenas, miles)
-- Palabras y frases comunes en francés
-- Seguimiento de progreso
-
-## Licencia
-
-Este es un proyecto educativo de código abierto.
-
----
-
-**¡Bonne chance! (¡Buena suerte!)** 🇫🇷
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
