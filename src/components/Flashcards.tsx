@@ -188,83 +188,60 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         color="bg-orange-500"
       />
 
-      {/* Flashcard with 3D flip */}
-      <div
-        className="cursor-pointer min-h-[200px]"
-        style={{ perspective: "1000px" }}
+      {/* Flashcard with flip on text only */}
+      <Card
+        className="cursor-pointer min-h-[200px] rounded-2xl border-2 border-gray-100 shadow-md active:scale-[0.98] transition-transform overflow-hidden"
         onClick={handleFlip}
       >
-        <div
-          className="relative w-full min-h-[200px] transition-transform duration-500"
-          style={{
-            transformStyle: "preserve-3d",
-            transform: showFrench ? "rotateY(180deg)" : "rotateY(0deg)",
-          }}
-        >
-          {/* Front — Spanish */}
-          <Card
-            className="absolute inset-0 rounded-2xl border-2 border-gray-100 shadow-md overflow-hidden"
-            style={{ backfaceVisibility: "hidden" }}
-          >
-            <div className="flex h-full">
-              {imageUrl && imageLoaded && (
-                <div className="w-1/3 min-h-[200px] relative shrink-0">
-                  <img
-                    src={imageUrl}
-                    alt={current.en}
-                    referrerPolicy="no-referrer"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              )}
-              <CardContent className="flex-1 p-6 flex items-center justify-center">
-                <div className="text-center space-y-3 w-full">
-                  <p className="text-3xl font-extrabold text-gray-800">{current.es}</p>
-                  <p className="text-sm text-indigo-400 mt-3 font-semibold">
-                    Toca para ver en francés
-                  </p>
-                </div>
-              </CardContent>
+        <div className="flex">
+          {imageUrl && imageLoaded && (
+            <div className="w-1/3 min-h-[200px] relative shrink-0">
+              <img
+                src={imageUrl}
+                alt={current.en}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             </div>
-          </Card>
-
-          {/* Back — French */}
-          <Card
-            className="absolute inset-0 rounded-2xl border-2 border-indigo-100 shadow-md overflow-hidden"
-            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-          >
-            <div className="flex h-full">
-              {imageUrl && imageLoaded && (
-                <div className="w-1/3 min-h-[200px] relative shrink-0">
-                  <img
-                    src={imageUrl}
-                    alt={current.en}
-                    referrerPolicy="no-referrer"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              )}
-              <CardContent className="flex-1 p-6 flex items-center justify-center">
-                <div className="text-center space-y-3 w-full">
-                  <p className="text-base text-gray-400">{current.es}</p>
-                  <p className="text-3xl font-extrabold italic text-indigo-600">{current.fr}</p>
-                  <Button
-                    variant="ghost"
-                    size="lg"
-                    className="text-indigo-500 hover:text-indigo-700 font-semibold"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      speak(current.fr);
-                    }}
-                  >
-                    <Volume2 className="w-5 h-5 mr-2" /> Escuchar
-                  </Button>
-                </div>
-              </CardContent>
+          )}
+          <CardContent className="flex-1 p-6 flex items-center justify-center" style={{ perspective: "600px" }}>
+            <div
+              className="relative w-full transition-transform duration-500"
+              style={{
+                transformStyle: "preserve-3d",
+                transform: showFrench ? "rotateY(180deg)" : "rotateY(0deg)",
+              }}
+            >
+              {/* Front — Spanish */}
+              <div className="text-center space-y-3 w-full" style={{ backfaceVisibility: "hidden" }}>
+                <p className="text-3xl font-extrabold text-gray-800">{current.es}</p>
+                <p className="text-sm text-indigo-400 mt-3 font-semibold">
+                  Toca para ver en francés
+                </p>
+              </div>
+              {/* Back — French */}
+              <div
+                className="absolute inset-0 text-center space-y-3 w-full flex flex-col items-center justify-center"
+                style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+              >
+                <p className="text-base text-gray-400">{current.es}</p>
+                <p className="text-3xl font-extrabold italic text-indigo-600">{current.fr}</p>
+                <Button
+                  variant="ghost"
+                  size="lg"
+                  className="text-indigo-500 hover:text-indigo-700 font-semibold"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    speak(current.fr);
+                  }}
+                >
+                  <Volume2 className="w-5 h-5 mr-2" /> Escuchar
+                </Button>
+              </div>
             </div>
-          </Card>
+          </CardContent>
         </div>
-      </div>
+      </Card>
 
       {/* Controls */}
       <div className="flex gap-3">
