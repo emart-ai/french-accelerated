@@ -18,6 +18,7 @@ export const resources: ListeningResource[] = [
       es: "Podcast en francés lento y claro. Perfecto para empezar.",
       fr: "Podcast en français lent et clair. Parfait pour commencer.",
     },
+    url: "https://www.youtube.com/c/innerFrench",
     level: "easy",
   },
   {
@@ -26,6 +27,7 @@ export const resources: ListeningResource[] = [
       es: "Aprende francés de forma natural con explicaciones claras.",
       fr: "Apprenez le français naturellement avec des explications claires.",
     },
+    url: "https://www.youtube.com/c/FrancaisAuthentique",
     level: "easy",
   },
   {
@@ -34,6 +36,7 @@ export const resources: ListeningResource[] = [
       es: "Lecciones estructuradas con buen ritmo para principiantes.",
       fr: "Leçons structurées à bon rythme pour débutants.",
     },
+    url: "https://www.youtube.com/c/FrancaisavecPierre",
     level: "easy",
   },
   {
@@ -42,6 +45,7 @@ export const resources: ListeningResource[] = [
       es: "Noticias reales en francés simplificado. Ideal para nivel intermedio.",
       fr: "Actualités réelles en français simplifié. Idéal pour le niveau intermédiaire.",
     },
+    url: "https://savoirs.rfi.fr/fr/apprendre-enseigner/langue-francaise/journal-en-francais-facile",
     level: "medium",
   },
   {
@@ -50,6 +54,7 @@ export const resources: ListeningResource[] = [
       es: "Lecciones de 15-20 min con explicaciones en inglés. Buena estructura.",
       fr: "Leçons de 15-20 min avec explications en anglais. Bonne structure.",
     },
+    url: "https://coffeebreaklanguages.com/coffeebreakfrench/",
     level: "medium",
   },
   {
@@ -58,6 +63,7 @@ export const resources: ListeningResource[] = [
       es: "Videos de actualidad con ejercicios y transcripciones.",
       fr: "Vidéos d'actualité avec exercices et transcriptions.",
     },
+    url: "https://apprendre.tv5monde.com/fr/exercices/7-jours-sur-la-planete",
     level: "medium",
   },
   {
@@ -66,6 +72,7 @@ export const resources: ListeningResource[] = [
       es: "Radio francesa real. Velocidad nativa, vocabulario avanzado.",
       fr: "Radio française réelle. Vitesse native, vocabulaire avancé.",
     },
+    url: "https://www.radiofrance.fr/franceinter",
     level: "hard",
   },
   {
@@ -74,6 +81,7 @@ export const resources: ListeningResource[] = [
       es: "Debates y cultura. Excelente para comprensión avanzada.",
       fr: "Débats et culture. Excellent pour la compréhension avancée.",
     },
+    url: "https://www.radiofrance.fr/franceculture",
     level: "hard",
   },
   {
@@ -82,6 +90,7 @@ export const resources: ListeningResource[] = [
       es: "Diferencias culturales franco-alemanas. Divertido y educativo.",
       fr: "Différences culturelles franco-allemandes. Amusant et éducatif.",
     },
+    url: "https://www.youtube.com/playlist?list=PLAhODKFKPiFBkwb0w1s2USEqbJbmHNu_L",
     level: "hard",
   },
 ];
@@ -93,6 +102,7 @@ export const clb7Resources: ListeningResource[] = [
       es: "Entrevistas en la calle con subtítulos en francés y español.",
       fr: "Interviews dans la rue avec sous-titres en français et espagnol.",
     },
+    url: "https://www.youtube.com/c/EasyFrench",
     level: "medium",
   },
   {
@@ -101,6 +111,7 @@ export const clb7Resources: ListeningResource[] = [
       es: "Humor francés. Vocabulario coloquial y cultura pop.",
       fr: "Humour français. Vocabulaire familier et culture pop.",
     },
+    url: "https://www.youtube.com/c/CyprienGaming",
     level: "hard",
   },
   {
@@ -109,6 +120,7 @@ export const clb7Resources: ListeningResource[] = [
       es: "Serie de suspenso. Diálogos rápidos pero claros.",
       fr: "Série de suspense. Dialogues rapides mais clairs.",
     },
+    url: "https://www.netflix.com/title/80994082",
     level: "hard",
   },
   {
@@ -117,6 +129,7 @@ export const clb7Resources: ListeningResource[] = [
       es: "Comedia sobre agentes de actores. Francés cotidiano y profesional.",
       fr: "Comédie sur des agents d'acteurs. Français quotidien et professionnel.",
     },
+    url: "https://www.netflix.com/title/80133335",
     level: "hard",
   },
 ];

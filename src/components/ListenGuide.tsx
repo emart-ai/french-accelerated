@@ -3,7 +3,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink, Play } from "lucide-react";
+import { useState } from "react";
 import {
   resources,
   clb7Resources,
@@ -21,6 +22,67 @@ const levelConfig = {
   medium: { label: "Medio / Moyen", badge: "secondary" as const },
   hard: { label: "Difícil / Difficile", badge: "outline" as const },
 };
+
+function getYouTubeId(url: string): string | null {
+  // Channel/playlist URLs — not embeddable as single video
+  if (url.includes("/c/") || url.includes("/channel/") || url.includes("/user/")) return null;
+  // Playlist
+  const plMatch = url.match(/[?&]list=([^&]+)/);
+  if (plMatch) return plMatch[1];
+  // Video
+  const vMatch = url.match(/(?:youtu\.be\/|[?&]v=)([^&]+)/);
+  return vMatch ? vMatch[1] : null;
+}
+
+function ResourceCard({ resource: r }: { resource: import("@/data/listening").ListeningResource }) {
+  const [expanded, setExpanded] = useState(false);
+  const isYouTube = r.url?.includes("youtube.com") || r.url?.includes("youtu.be");
+  const ytId = r.url ? getYouTubeId(r.url) : null;
+  const isPlaylist = r.url?.includes("list=");
+
+  return (
+    <div className="p-3 rounded-lg bg-muted space-y-2">
+      <p className="font-medium text-sm">{r.name}</p>
+      <p className="text-xs text-muted-foreground">{r.description.es}</p>
+      <p className="text-xs italic text-muted-foreground">{r.description.fr}</p>
+      {r.url && (
+        <div className="flex gap-2 pt-1">
+          {isYouTube && ytId && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs h-8 gap-1.5"
+              onClick={() => setExpanded(!expanded)}
+            >
+              <Play className="w-3.5 h-3.5" />
+              {expanded ? "Ocultar" : "Reproducir"}
+            </Button>
+          )}
+          <a href={r.url} target="_blank" rel="noopener noreferrer">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs h-8 gap-1.5"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              Abrir
+            </Button>
+          </a>
+        </div>
+      )}
+      {expanded && ytId && (
+        <div className="aspect-video w-full rounded-lg overflow-hidden mt-2">
+          <iframe
+            src={`https://www.youtube.com/embed/${isPlaylist ? `videoseries?list=${ytId}` : ytId}`}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function ListenGuide({ tab, onBack }: ListenGuideProps) {
   const allResources = tab === "clb7" ? [...resources, ...clb7Resources] : resources;
@@ -48,13 +110,7 @@ export function ListenGuide({ tab, onBack }: ListenGuideProps) {
             </CardHeader>
             <CardContent className="space-y-2 pt-0">
               {grouped[level].map((r, i) => (
-                <div key={i} className="p-3 rounded-lg bg-muted">
-                  <p className="font-medium text-sm">{r.name}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{r.description.es}</p>
-                  <p className="text-xs italic text-muted-foreground mt-0.5">
-                    {r.description.fr}
-                  </p>
-                </div>
+                <ResourceCard key={i} resource={r} />
               ))}
             </CardContent>
           </Card>
