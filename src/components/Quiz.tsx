@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -35,21 +35,22 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+function makeQuestion(word: Word, allWords: Word[]): Question {
+  const sameDayPool = allWords.filter((w) => w.fr !== word.fr && w.day === word.day);
+  const fallbackPool = allWords.filter((w) => w.fr !== word.fr);
+  const wrongSource = sameDayPool.length >= 3 ? sameDayPool : fallbackPool;
+  const wrongs = shuffle(wrongSource).slice(0, 3).map((w) => w.fr);
+  const options = shuffle([word.fr, ...wrongs]);
+  return {
+    word,
+    options,
+    correctIndex: options.indexOf(word.fr),
+  };
+}
+
 function generateQuestions(words: Word[], allWords: Word[], max: number): Question[] {
   const pool = shuffle(words).slice(0, max);
-  return pool.map((word) => {
-    // Prefer wrong options from the same day so the quiz stays on-topic
-    const sameDayPool = allWords.filter((w) => w.fr !== word.fr && w.day === word.day);
-    const fallbackPool = allWords.filter((w) => w.fr !== word.fr);
-    const wrongSource = sameDayPool.length >= 3 ? sameDayPool : fallbackPool;
-    const wrongs = shuffle(wrongSource).slice(0, 3).map((w) => w.fr);
-    const options = shuffle([word.fr, ...wrongs]);
-    return {
-      word,
-      options,
-      correctIndex: options.indexOf(word.fr),
-    };
-  });
+  return pool.map((word) => makeQuestion(word, allWords));
 }
 
 export function Quiz({
@@ -63,15 +64,26 @@ export function Quiz({
 }: QuizProps) {
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [seed, setSeed] = useState(0);
-
-  const questions = useMemo(
-    () => generateQuestions(words, allWords, 30),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [words.length, allWords.length, seed]
+  const [questions, setQuestions] = useState<Question[]>(() =>
+    generateQuestions(words, allWords, 30)
   );
+  const initialCount = useRef(questions.length);
+  const correctOnFirstTry = useRef(0);
+  const mistakeCount = useRef(0);
+
+  // Reset questions when seed changes (retry)
+  useMemo(() => {
+    if (seed > 0) {
+      const q = generateQuestions(words, allWords, 30);
+      setQuestions(q);
+      initialCount.current = q.length;
+      correctOnFirstTry.current = 0;
+      mistakeCount.current = 0;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed]);
 
   const question = questions[current];
 
@@ -81,35 +93,44 @@ export function Quiz({
       setSelected(optionIndex);
       const isCorrect = optionIndex === question.correctIndex;
       if (isCorrect) {
-        setScore((s) => s + 1);
         onMarkLearned(question.word.fr);
         celebrate();
+        // Track if this is from the original set (not a retry)
+        if (current < initialCount.current) {
+          correctOnFirstTry.current += 1;
+        }
+      } else {
+        mistakeCount.current += 1;
+        // Re-add failed question to the end with new options
+        setQuestions((prev) => [...prev, makeQuestion(question.word, allWords)]);
       }
       speak(question.word.fr);
     },
-    [selected, question, onMarkLearned]
+    [selected, question, onMarkLearned, allWords, current]
   );
 
   const handleNext = useCallback(() => {
     if (current + 1 >= questions.length) {
       setFinished(true);
-      onComplete?.(score, questions.length);
+      onComplete?.(correctOnFirstTry.current, initialCount.current);
     } else {
       setCurrent(current + 1);
       setSelected(null);
     }
-  }, [current, questions.length, score, onComplete]);
+  }, [current, questions.length, onComplete]);
 
   const handleRetry = useCallback(() => {
     setCurrent(0);
     setSelected(null);
-    setScore(0);
     setFinished(false);
     setSeed((s) => s + 1);
   }, []);
 
   if (finished) {
-    const pct = Math.round((score / questions.length) * 100);
+    const total = initialCount.current;
+    const firstTry = correctOnFirstTry.current;
+    const mistakes = mistakeCount.current;
+    const pct = Math.round((firstTry / total) * 100);
     const color = pct >= 80 ? "text-emerald-600" : pct >= 50 ? "text-orange-500" : "text-red-500";
     return (
       <div className="space-y-5">
@@ -119,9 +140,14 @@ export function Quiz({
         <Card className="rounded-2xl border-2 border-gray-100 shadow-md">
           <CardContent className="p-10 text-center space-y-4">
             <p className={`text-6xl font-extrabold ${color}`}>
-              {score}/{questions.length}
+              {firstTry}/{total}
             </p>
             <p className={`text-3xl font-bold ${color}`}>{pct}%</p>
+            <p className="text-lg text-gray-500 font-semibold">
+              {mistakes === 0
+                ? "Perfecto! Sin errores!"
+                : `${mistakes} ${mistakes === 1 ? "error" : "errores"} corregido${mistakes === 1 ? "" : "s"}`}
+            </p>
             <p className="text-lg text-gray-500 font-semibold">
               {pct >= 80
                 ? "Excelente!"
@@ -146,6 +172,8 @@ export function Quiz({
 
   if (!question) return null;
 
+  const isRetry = current >= initialCount.current;
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
@@ -153,7 +181,7 @@ export function Quiz({
           <ArrowLeft className="w-5 h-5 mr-2" /> Volver
         </Button>
         <Badge className="text-sm font-bold px-3 py-1 bg-emerald-500 text-white">
-          {score} correctas
+          {correctOnFirstTry.current} correctas
         </Badge>
       </div>
 
@@ -166,6 +194,10 @@ export function Quiz({
         label={`Pregunta ${current + 1}/${questions.length}`}
         color="bg-purple-500"
       />
+
+      {isRetry && (
+        <p className="text-sm text-orange-500 text-center font-bold">Repaso — fallaste esta antes</p>
+      )}
 
       <Card className="rounded-2xl border-2 border-gray-100 shadow-sm">
         <CardContent className="p-8 text-center space-y-3">
