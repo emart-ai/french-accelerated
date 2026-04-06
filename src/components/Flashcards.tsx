@@ -131,9 +131,12 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
         if (current && !learned.has(current.fr)) {
-          onMarkLearned(current.fr);
+          const word = current.fr;
           setShowFrench(false);
-          celebrate();
+          setTimeout(() => {
+            onMarkLearned(word);
+            celebrate();
+          }, 500);
         }
       }
     };
@@ -251,9 +254,13 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
           className="flex-1 min-h-[56px] text-base font-semibold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white"
           disabled={learned.has(current.fr)}
           onClick={(e) => {
-            onMarkLearned(current.fr);
+            const word = current.fr;
+            const target = e.currentTarget;
             setShowFrench(false);
-            celebrate(e.currentTarget);
+            setTimeout(() => {
+              onMarkLearned(word);
+              celebrate(target);
+            }, 500);
           }}
         >
           <Check className="w-5 h-5 mr-2" />
