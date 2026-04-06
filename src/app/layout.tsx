@@ -18,13 +18,23 @@ export const metadata: Metadata = {
   title: "TEF Accelerator — Aprende Francés para TEF Canada",
   description:
     "Aprende las palabras francesas diferentes del español para el examen TEF Canada. Plan de estudio CLB 5 (28 días) y CLB 7 (150 días).",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "TEF Accelerator",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon-192.png",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#4f46e5",
 };
 
 export default function RootLayout({

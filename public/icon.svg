@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#4f46e5"/>
+  <text x="256" y="200" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="120" fill="white">TEF</text>
+  <rect x="96" y="240" width="320" height="4" rx="2" fill="white" opacity="0.3"/>
+  <text x="256" y="340" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="72" fill="#f97316">ACC</text>
+  <g transform="translate(136, 370)">
+    <rect width="80" height="24" rx="4" fill="#002395"/>
+    <rect x="80" width="80" height="24" rx="0" fill="white"/>
+    <rect x="160" width="80" height="24" rx="4" fill="#ED2939"/>
+  </g>
+</svg>

@@ -8,7 +8,6 @@ const CACHE_KEY = (tab: string) => `tef-${tab}-tasks`;
 
 export function useProgress(tab: string) {
   const [tasks, setTasks] = useState<Set<TaskKey>>(new Set());
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const cached = localStorage.getItem(CACHE_KEY(tab));
@@ -17,20 +16,6 @@ export function useProgress(tab: string) {
         setTasks(new Set(JSON.parse(cached)));
       } catch {}
     }
-
-    fetch(`/api/progress?tab=${tab}`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.tasks) {
-          const set = new Set<TaskKey>(
-            data.tasks.map((t: { dayIndex: number; slot: string }) => `${t.dayIndex}-${t.slot}` as TaskKey)
-          );
-          setTasks(set);
-          localStorage.setItem(CACHE_KEY(tab), JSON.stringify([...set]));
-        }
-      })
-      .catch(() => {})
-      .finally(() => setIsLoading(false));
   }, [tab]);
 
   const markDone = useCallback(
@@ -42,11 +27,6 @@ export function useProgress(tab: string) {
         localStorage.setItem(CACHE_KEY(tab), JSON.stringify([...next]));
         return next;
       });
-      fetch("/api/progress", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ dayIndex, slot, tab }),
-      }).catch(() => {});
     },
     [tab]
   );
@@ -61,5 +41,5 @@ export function useProgress(tab: string) {
     [tasks]
   );
 
-  return { tasks, markDone, isDone, isDayComplete, isLoading };
+  return { tasks, markDone, isDone, isDayComplete };
 }

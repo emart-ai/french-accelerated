@@ -16,10 +16,6 @@ export function TabSwitcher() {
     localStorage.setItem("tef-active-tab", tab);
   }, [tab]);
 
-  useEffect(() => {
-    fetch("/api/user").catch(() => {});
-  }, []);
-
   return (
     <Tabs value={tab} onValueChange={setTab}>
       <TabsList className="w-full grid grid-cols-2 h-14 bg-gray-100 rounded-2xl p-1">

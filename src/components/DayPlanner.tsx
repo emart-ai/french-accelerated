@@ -158,11 +158,13 @@ export function DayPlanner({ tab }: DayPlannerProps) {
 
   const handleQuizComplete = useCallback(
     (score: number, total: number) => {
-      fetch("/api/quiz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tab, dayIndex: activeDay, score, total }),
-      }).catch(() => {});
+      // Store quiz results locally
+      const key = `tef-${tab}-quiz`;
+      try {
+        const existing = JSON.parse(localStorage.getItem(key) || "[]");
+        existing.push({ dayIndex: activeDay, score, total, date: new Date().toISOString() });
+        localStorage.setItem(key, JSON.stringify(existing));
+      } catch {}
     },
     [tab, activeDay]
   );
