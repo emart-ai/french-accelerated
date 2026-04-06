@@ -102,7 +102,7 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") goNext();
       else if (e.key === "ArrowLeft") goPrev();
-      else if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      else if (e.key === "ArrowUp") {
         e.preventDefault();
         if (!showFrench && current) {
           setShowFrench(true);
@@ -110,11 +110,17 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         } else {
           setShowFrench(false);
         }
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        if (current && !learned.has(current.fr)) {
+          onMarkLearned(current.fr);
+          goNext();
+        }
       }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [goNext, goPrev, showFrench, current]);
+  }, [goNext, goPrev, showFrench, current, learned, onMarkLearned]);
 
   const handleFlip = () => {
     if (!showFrench && current) {
