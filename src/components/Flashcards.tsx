@@ -26,30 +26,47 @@ function useWordImage(query: string | undefined) {
     setLoaded(false);
     if (!query) return;
 
+    const cacheKey = `tef-img-${query}`;
+    const cached = localStorage.getItem(cacheKey);
+
     let cancelled = false;
-    fetch(`/api/image?q=${encodeURIComponent(query)}`)
-      .then((r) => {
-        if (!r.ok) throw new Error("fetch failed");
-        return r.json();
-      })
-      .then((data) => {
-        if (!cancelled && data.url) {
-          const img = new Image();
-          img.onload = () => {
-            if (!cancelled) {
-              setUrl(data.url);
-              setLoaded(true);
-            }
-          };
-          img.onerror = () => {
-            if (!cancelled) setUrl(null);
-          };
-          img.src = data.url;
+
+    function preload(imgUrl: string) {
+      const img = new Image();
+      img.onload = () => {
+        if (!cancelled) {
+          setUrl(imgUrl);
+          setLoaded(true);
         }
-      })
-      .catch(() => {
-        if (!cancelled) setUrl(null);
-      });
+      };
+      img.onerror = () => {
+        if (!cancelled) {
+          localStorage.removeItem(cacheKey);
+          setUrl(null);
+        }
+      };
+      img.src = imgUrl;
+    }
+
+    if (cached) {
+      preload(cached);
+    } else {
+      fetch(`/api/image?q=${encodeURIComponent(query)}`)
+        .then((r) => {
+          if (!r.ok) throw new Error("fetch failed");
+          return r.json();
+        })
+        .then((data) => {
+          if (!cancelled && data.url) {
+            localStorage.setItem(cacheKey, data.url);
+            preload(data.url);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) setUrl(null);
+        });
+    }
+
     return () => { cancelled = true; };
   }, [query]);
 
