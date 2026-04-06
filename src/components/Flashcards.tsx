@@ -17,6 +17,45 @@ interface FlashcardsProps {
   vocabDay?: number;
 }
 
+function useWordImage(query: string | undefined) {
+  const [url, setUrl] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setUrl(null);
+    setLoaded(false);
+    if (!query) return;
+
+    let cancelled = false;
+    fetch(`/api/image?q=${encodeURIComponent(query)}`)
+      .then((r) => {
+        if (!r.ok) throw new Error("fetch failed");
+        return r.json();
+      })
+      .then((data) => {
+        if (!cancelled && data.url) {
+          const img = new Image();
+          img.onload = () => {
+            if (!cancelled) {
+              setUrl(data.url);
+              setLoaded(true);
+            }
+          };
+          img.onerror = () => {
+            if (!cancelled) setUrl(null);
+          };
+          img.src = data.url;
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setUrl(null);
+      });
+    return () => { cancelled = true; };
+  }, [query]);
+
+  return { url, loaded };
+}
+
 export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5", vocabDay }: FlashcardsProps) {
   const [showFrench, setShowFrench] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,6 +86,7 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
   const allLearned = words.every((w) => learned.has(w.fr));
   const current = deck[currentIndex % deck.length];
   const learnedCount = words.filter((w) => learned.has(w.fr)).length;
+  const { url: imageUrl, loaded: imageLoaded } = useWordImage(current?.en);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % deck.length);
@@ -125,39 +165,52 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         color="bg-orange-500"
       />
 
-      {/* Flashcard */}
+      {/* Flashcard with image */}
       <Card
         className="cursor-pointer min-h-[200px] rounded-2xl border-2 border-gray-100 shadow-md active:scale-[0.98] transition-transform overflow-hidden"
         onClick={handleFlip}
       >
-        <CardContent className="p-6 flex items-center justify-center min-h-[200px]">
-          <div className="text-center space-y-3 w-full">
-            {!showFrench ? (
-              <>
-                <p className="text-3xl font-extrabold text-gray-800">{current.es}</p>
-                <p className="text-sm text-indigo-400 mt-3 font-semibold">
-                  Toca para ver en francés
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="text-base text-gray-400">{current.es}</p>
-                <p className="text-3xl font-extrabold italic text-indigo-600">{current.fr}</p>
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="text-indigo-500 hover:text-indigo-700 font-semibold"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    speak(current.fr);
-                  }}
-                >
-                  <Volume2 className="w-5 h-5 mr-2" /> Escuchar
-                </Button>
-              </>
-            )}
-          </div>
-        </CardContent>
+        <div className="flex">
+          {imageUrl && imageLoaded && (
+            <div className="w-1/3 min-h-[200px] relative shrink-0">
+              <img
+                src={imageUrl}
+                alt={current.en}
+                referrerPolicy="no-referrer"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          <CardContent className="flex-1 p-6 flex items-center justify-center">
+            <div className="text-center space-y-3 w-full">
+              {!showFrench ? (
+                <>
+                  <p className="text-3xl font-extrabold text-gray-800">{current.es}</p>
+                  <p className="text-sm text-indigo-400 mt-3 font-semibold">
+                    Toca para ver en francés
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-base text-gray-400">{current.es}</p>
+                  <p className="text-3xl font-extrabold italic text-indigo-600">{current.fr}</p>
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="text-indigo-500 hover:text-indigo-700 font-semibold"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      speak(current.fr);
+                    }}
+                  >
+                    <Volume2 className="w-5 h-5 mr-2" /> Escuchar
+                  </Button>
+                </>
+              )}
+            </div>
+          </CardContent>
+        </div>
       </Card>
 
       {/* Controls */}
