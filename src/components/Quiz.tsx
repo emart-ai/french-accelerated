@@ -190,8 +190,8 @@ export function Quiz({
       )}
 
       <ProgressBar
-        value={((current + 1) / questions.length) * 100}
-        label={`Pregunta ${current + 1}/${questions.length}`}
+        value={Math.min((current / initialCount.current) * 100, 100)}
+        label={`Pregunta ${Math.min(current + 1, initialCount.current)}/${initialCount.current}`}
         color="bg-purple-500"
       />
 
