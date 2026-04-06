@@ -131,7 +131,7 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         e.preventDefault();
         if (current && !learned.has(current.fr)) {
           onMarkLearned(current.fr);
-          goNext();
+          setShowFrench(false);
         }
       }
     };
@@ -273,10 +273,7 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
           disabled={learned.has(current.fr)}
           onClick={() => {
             onMarkLearned(current.fr);
-            if (currentIndex < deck.length - 1) {
-              setCurrentIndex(currentIndex + 1);
-              setShowFrench(false);
-            }
+            setShowFrench(false);
           }}
         >
           <Check className="w-5 h-5 mr-2" />
