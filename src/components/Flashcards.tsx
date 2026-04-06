@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressBar } from "@/components/ProgressBar";
 import { speak } from "@/lib/tts";
+import { celebrate } from "@/lib/celebrate";
 import { Volume2, Check, ArrowRight, ArrowLeft, RotateCcw } from "lucide-react";
 import type { Word } from "@/data/words";
 
@@ -132,6 +133,7 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         if (current && !learned.has(current.fr)) {
           onMarkLearned(current.fr);
           setShowFrench(false);
+          celebrate();
         }
       }
     };
@@ -248,9 +250,10 @@ export function Flashcards({ words, learned, onMarkLearned, onBack, tab = "clb5"
         <Button
           className="flex-1 min-h-[56px] text-base font-semibold rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white"
           disabled={learned.has(current.fr)}
-          onClick={() => {
+          onClick={(e) => {
             onMarkLearned(current.fr);
             setShowFrench(false);
+            celebrate(e.currentTarget);
           }}
         >
           <Check className="w-5 h-5 mr-2" />

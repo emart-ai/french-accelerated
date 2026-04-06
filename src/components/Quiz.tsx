@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProgressBar } from "@/components/ProgressBar";
 import { speak } from "@/lib/tts";
+import { celebrate } from "@/lib/celebrate";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import type { Word } from "@/data/words";
 
@@ -37,8 +38,11 @@ function shuffle<T>(arr: T[]): T[] {
 function generateQuestions(words: Word[], allWords: Word[], max: number): Question[] {
   const pool = shuffle(words).slice(0, max);
   return pool.map((word) => {
-    const wrongPool = allWords.filter((w) => w.fr !== word.fr);
-    const wrongs = shuffle(wrongPool).slice(0, 3).map((w) => w.fr);
+    // Prefer wrong options from the same day so the quiz stays on-topic
+    const sameDayPool = allWords.filter((w) => w.fr !== word.fr && w.day === word.day);
+    const fallbackPool = allWords.filter((w) => w.fr !== word.fr);
+    const wrongSource = sameDayPool.length >= 3 ? sameDayPool : fallbackPool;
+    const wrongs = shuffle(wrongSource).slice(0, 3).map((w) => w.fr);
     const options = shuffle([word.fr, ...wrongs]);
     return {
       word,
@@ -79,6 +83,7 @@ export function Quiz({
       if (isCorrect) {
         setScore((s) => s + 1);
         onMarkLearned(question.word.fr);
+        celebrate();
       }
       speak(question.word.fr);
     },
