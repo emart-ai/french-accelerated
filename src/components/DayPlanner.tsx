@@ -360,6 +360,13 @@ export function DayPlanner({ tab }: DayPlannerProps) {
         <p className="text-sm font-bold text-gray-500 uppercase tracking-wider px-1">
           Herramientas
         </p>
+        <Button
+          variant="outline"
+          className="w-full min-h-[56px] justify-start text-base font-semibold rounded-xl border-2 border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100"
+          onClick={() => setActiveModule({ type: "daily-language" })}
+        >
+          <Languages className="w-5 h-5 mr-2 text-teal-500" /> Palabras del Día (FR / ES)
+        </Button>
         <div className="grid grid-cols-2 gap-3">
           <Button
             variant="outline"
@@ -410,13 +417,6 @@ export function DayPlanner({ tab }: DayPlannerProps) {
           onClick={() => setActiveModule({ type: "listening" })}
         >
           <Headphones className="w-5 h-5 mr-2 text-blue-500" /> Guía de Escucha
-        </Button>
-        <Button
-          variant="outline"
-          className="w-full min-h-[56px] justify-start text-base font-semibold rounded-xl border-2 border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100"
-          onClick={() => setActiveModule({ type: "daily-language" })}
-        >
-          <Languages className="w-5 h-5 mr-2 text-teal-500" /> Palabras del Día (FR / ES)
         </Button>
       </div>
 
