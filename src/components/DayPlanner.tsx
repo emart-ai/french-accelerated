@@ -15,6 +15,7 @@ import { SpeakingB } from "./SpeakingB";
 import { WriteEmail } from "./WriteEmail";
 import { WriteOpinion } from "./WriteOpinion";
 import { ListenGuide } from "./ListenGuide";
+import { DailyLanguageView } from "./DailyLanguageView";
 import { useLearnedWords } from "@/hooks/useLearnedWords";
 import { useProgress } from "@/hooks/useProgress";
 import { words as allWordData } from "@/data/words";
@@ -41,6 +42,7 @@ import {
   Mail,
   FileText,
   Headphones,
+  Languages,
 } from "lucide-react";
 import type { DayPlan } from "@/data/plan-clb5";
 
@@ -53,7 +55,8 @@ type ActiveModule =
   | { type: "speaking-b" }
   | { type: "write-email" }
   | { type: "write-opinion" }
-  | { type: "listening" };
+  | { type: "listening" }
+  | { type: "daily-language" };
 
 interface DayPlannerProps {
   tab: "clb5" | "clb7";
@@ -251,6 +254,14 @@ export function DayPlanner({ tab }: DayPlannerProps) {
         );
       case "listening":
         return <ListenGuide tab={tab} onBack={handleBack} />;
+      case "daily-language":
+        return (
+          <DailyLanguageView
+            words={tabWords}
+            learned={learned}
+            onBack={handleBack}
+          />
+        );
     }
   }
 
@@ -349,6 +360,13 @@ export function DayPlanner({ tab }: DayPlannerProps) {
         <p className="text-sm font-bold text-gray-500 uppercase tracking-wider px-1">
           Herramientas
         </p>
+        <Button
+          variant="outline"
+          className="w-full min-h-[56px] justify-start text-base font-semibold rounded-xl border-2 border-teal-200 bg-teal-50 text-teal-700 hover:bg-teal-100"
+          onClick={() => setActiveModule({ type: "daily-language" })}
+        >
+          <Languages className="w-5 h-5 mr-2 text-teal-500" /> Palabras del Día (FR / ES)
+        </Button>
         <div className="grid grid-cols-2 gap-3">
           <Button
             variant="outline"
